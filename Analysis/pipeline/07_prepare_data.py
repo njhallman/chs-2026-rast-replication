@@ -377,8 +377,12 @@ def prepare_audit_data():
         next_jobs = nonb4_after.groupby('user_id', sort=False).head(1).set_index('user_id')
 
         # Map onto the full panel (NaN for retained==1 and leavers with no next job)
-        revB4AudExp['b4_end_salary'] = revB4AudExp['user_id'].map(b4_end_salaries)
-        revB4AudExp['next_start_salary'] = revB4AudExp['user_id'].map(next_jobs['start_salary'])
+        revB4AudExp['b4_end_salary'] = (
+            revB4AudExp['user_id'].map(b4_end_salaries).astype('float64')
+        )
+        revB4AudExp['next_start_salary'] = (
+            revB4AudExp['user_id'].map(next_jobs['start_salary']).astype('float64')
+        )
         revB4AudExp['gap_days'] = revB4AudExp['user_id'].map(
             (next_jobs['startdate'] - next_jobs['b4_enddate']).dt.days
         )
@@ -744,6 +748,9 @@ def prepare_other_fs_data():
 
     revOtherFsExp = panel_source.iloc[row_index].copy()
     revOtherFsExp['position_year'] = position_year
+    revOtherFsExp = revOtherFsExp[
+        panel_cols[:5] + ['position_year'] + panel_cols[5:]
+    ]
     revOtherFsExp.reset_index(drop=True, inplace=True)
 
     revOtherFsExp = revOtherFsExp.sort_values(['user_id', 'position_year', 'spell_enddate'])

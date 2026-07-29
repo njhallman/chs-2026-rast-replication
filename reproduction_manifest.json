@@ -1,0 +1,87 @@
+{
+  "figures": [
+    {
+      "file": "stackPlot.png",
+      "generator": "Analysis/figures/stack_plot.py"
+    },
+    {
+      "file": "mechanism_variation_metro.png",
+      "generator": "Analysis/figures/mechanism_variation_metro.py"
+    },
+    {
+      "file": "retentionGapMap.png",
+      "generator": "Analysis/figures/retention_gap_map.py"
+    },
+    {
+      "file": "benchmarkBB5IB.png",
+      "generator": "Analysis/benchmarks/fig_top5_ib_extended.py"
+    },
+    {
+      "file": "benchmarkOFS.png",
+      "generator": "Analysis/benchmarks/fig_top5_ib_extended.py"
+    },
+    {
+      "file": "benchmarkATCombined.png",
+      "generator": "Analysis/benchmarks/fig_at_combined.py"
+    },
+    {
+      "file": "benchmarkB4Tax.png",
+      "generator": "Analysis/benchmarks/fig_b4_nonaudit.py"
+    },
+    {
+      "file": "supplyVsEntry.png",
+      "generator": "Analysis/figures/supply_vs_entry.py"
+    }
+  ],
+  "tables": [
+    {
+      "file": "sampleDesign.tex",
+      "generator": "Analysis/tables/sample_design.py"
+    },
+    {
+      "file": "summaryStats.tex",
+      "generator": "Analysis/tables/summary_stats.py"
+    },
+    {
+      "file": "mainB4Table.tex",
+      "generator": "Analysis/tables/extended_period_tables.py"
+    },
+    {
+      "file": "mechanismsTable.tex",
+      "generator": "Analysis/tables/mechanisms_table.py"
+    },
+    {
+      "file": "destinationQualityPost.tex",
+      "generator": "Analysis/tables/outside_options.py"
+    },
+    {
+      "file": "rankInteraction.tex",
+      "generator": "Analysis/tables/rank_interaction.py"
+    },
+    {
+      "file": "robustnessModels.tex",
+      "generator": "Analysis/tables/robustness_models.py"
+    },
+    {
+      "file": "rolesTable.tex",
+      "generator": "Analysis/tables/roles_table.py"
+    },
+    {
+      "file": "firmNamesTable.tex",
+      "generator": null,
+      "note": "Static disclosure of the company-name filter used to construct the sample."
+    },
+    {
+      "file": "topCompanies.tex",
+      "generator": "Analysis/tables/top_companies.py"
+    },
+    {
+      "file": "nonB4FirmsTable.tex",
+      "generator": "Analysis/tables/nonb4_firms.py"
+    },
+    {
+      "file": "VariableDefinitions.tex",
+      "generator": "Analysis/tables/variable_definitions.py"
+    }
+  ]
+}

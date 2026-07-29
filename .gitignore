@@ -1,0 +1,40 @@
+Analysis/Data/
+JIC/
+__pycache__/
+.DS_Store
+*.log
+.venv/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+
+# LaTeX build artifacts
+LaTeX/**/*.aux
+LaTeX/*.bbl
+LaTeX/**/*.bbl-SAVE-ERROR
+LaTeX/**/*.bcf
+LaTeX/**/*.bcf-SAVE-ERROR
+LaTeX/**/*.blg
+LaTeX/**/*.out
+LaTeX/**/*.run.xml
+LaTeX/**/*.synctex.gz
+LaTeX/**/*.synctex\(busy\)
+LaTeX/**/*.fdb_latexmk
+LaTeX/**/*.fls
+LaTeX/**/*.toc
+LaTeX/**/*.lof
+LaTeX/**/*.lot
+
+# Biber / setup dependencies (from cloud environment setup)
+biber
+biber-arm.tar.gz
+biber.tar.gz
+biber_extracted/
+biber_deps/
+*.deb
+
+# Local zip of the RAST R1 submission (contents tracked in LaTeX/Submissions/RAST_R1/)
+RAST_R1_LaTeX_Submission.zip

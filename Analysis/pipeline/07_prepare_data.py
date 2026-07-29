@@ -359,30 +359,29 @@ def prepare_audit_data():
 
         all_pos_leavers = all_pos[all_pos['user_id'].isin(leaver_ids)].sort_values(['user_id', 'startdate'])
 
-        # For each leaver, find next non-B4 job and B4 end salary
-        next_jobs = {}
-        b4_end_salaries = {}
-        for uid, grp in all_pos_leavers.groupby('user_id'):
-            b4_end = leavers.loc[leavers['user_id'] == uid, 'b4_enddate'].iloc[0]
-            b4p = grp[grp['is_big4']]
-            if len(b4p) > 0:
-                b4_end_salaries[uid] = b4p.iloc[-1]['end_salary']
-            if pd.isna(b4_end):
-                continue
-            nonb4_after = grp[(~grp['is_big4']) & (grp['startdate'] >= b4_end)]
-            if len(nonb4_after) > 0:
-                nxt = nonb4_after.iloc[0]
-                next_jobs[uid] = {
-                    'next_start_salary': nxt['start_salary'],
-                    'gap_days': (nxt['startdate'] - b4_end).days,
-                }
+        # Find the last Big 4 salary and first later non-Big 4 job in bulk.
+        # This preserves the prior per-user selection rules without repeatedly
+        # scanning the full leaver table inside a Python loop.
+        b4_rows = all_pos_leavers[all_pos_leavers['is_big4']]
+        b4_end_salaries = (
+            b4_rows.groupby('user_id', sort=False).tail(1)
+            .set_index('user_id')['end_salary']
+        )
+        nonb4_after = all_pos_leavers[~all_pos_leavers['is_big4']].merge(
+            leavers[['user_id', 'b4_enddate']], on='user_id', how='inner'
+        )
+        nonb4_after = nonb4_after[
+            nonb4_after['b4_enddate'].notna()
+            & (nonb4_after['startdate'] >= nonb4_after['b4_enddate'])
+        ]
+        next_jobs = nonb4_after.groupby('user_id', sort=False).head(1).set_index('user_id')
 
         # Map onto the full panel (NaN for retained==1 and leavers with no next job)
         revB4AudExp['b4_end_salary'] = revB4AudExp['user_id'].map(b4_end_salaries)
-        revB4AudExp['next_start_salary'] = revB4AudExp['user_id'].map(
-            {uid: v['next_start_salary'] for uid, v in next_jobs.items()})
+        revB4AudExp['next_start_salary'] = revB4AudExp['user_id'].map(next_jobs['start_salary'])
         revB4AudExp['gap_days'] = revB4AudExp['user_id'].map(
-            {uid: v['gap_days'] for uid, v in next_jobs.items()})
+            (next_jobs['startdate'] - next_jobs['b4_enddate']).dt.days
+        )
 
         # Only populate for the leaver's last year (retained==0)
         not_leaver_year = ~((revB4AudExp['retained'] == 0) &
@@ -728,17 +727,24 @@ def prepare_other_fs_data():
     revOtherFs['spell_enddate'] = revOtherFs.groupby('spell_id')['enddate'].transform('max')
     revOtherFs = revOtherFs.drop_duplicates(['user_id', 'spell_id'], keep='last')
 
-    revOtherFs['position_year'] = revOtherFs.apply(
-        lambda row: list(range(row['spell_startdate'].year, row['spell_enddate'].year + 1)), axis=1
-    )
+    # Expand spells to employee-years without a per-row Python callback.
+    # The prior apply-and-explode approach is prohibitively slow at this scale.
+    panel_cols = [
+        'user_id', 'state', 'metro_area', 'spell_startdate', 'spell_enddate',
+        'sex_predicted', 'ethnicity_predicted', 'profile_linkedin_url',
+        'ultimate_parent_rcid', 'company_raw', 'role_k1500', 'degree', 'university_name'
+    ]
+    panel_source = revOtherFs[panel_cols]
+    start_year = revOtherFs['spell_startdate'].dt.year.to_numpy()
+    span = (revOtherFs['spell_enddate'].dt.year.to_numpy() - start_year + 1)
+    row_index = np.repeat(np.arange(len(revOtherFs)), span)
+    repeated_start_year = np.repeat(start_year, span)
+    block_start = np.repeat(np.cumsum(span) - span, span)
+    position_year = repeated_start_year + np.arange(span.sum()) - block_start
 
-    revOtherFsExp = (
-        revOtherFs[[
-            'user_id', 'state', 'metro_area', 'spell_startdate', 'spell_enddate',
-            'position_year', 'sex_predicted', 'ethnicity_predicted', 'profile_linkedin_url',
-            'ultimate_parent_rcid', 'company_raw', 'role_k1500', 'degree', 'university_name'
-        ]].explode('position_year', ignore_index=True)
-    )
+    revOtherFsExp = panel_source.iloc[row_index].copy()
+    revOtherFsExp['position_year'] = position_year
+    revOtherFsExp.reset_index(drop=True, inplace=True)
 
     revOtherFsExp = revOtherFsExp.sort_values(['user_id', 'position_year', 'spell_enddate'])
     revOtherFsExp = revOtherFsExp.drop_duplicates(['user_id', 'position_year'], keep='last')

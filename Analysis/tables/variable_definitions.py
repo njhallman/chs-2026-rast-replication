@@ -117,6 +117,6 @@ with open(f"{tables_dir}/VariableDefinitions.tex", 'w') as fout:
     fout.write(r"\label{table:variableDefinitions}")
     fout.write("\n")
     fout.write(r"\end{longtable}")
-    fout.write("\n\n\n")
+    fout.write("\n")
 
 print(f"Saved {tables_dir}/VariableDefinitions.tex")

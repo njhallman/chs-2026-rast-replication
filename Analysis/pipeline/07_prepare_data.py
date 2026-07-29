@@ -416,7 +416,7 @@ def prepare_audit_data():
     edgar_root = Path(os.environ.get(
         "LOCAL_EDGAR_ARCHIVE", str(Path(data_dir) / "edgar")
     ))
-    EDGAR_DB = edgar_root / "db" / "edgar.db"
+    EDGAR_DB = edgar_root if edgar_root.suffix == ".db" else edgar_root / "edgar.db"
 
     try:
         print("  Building mechanism variables (AC female %, gender keywords)...")

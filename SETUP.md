@@ -8,19 +8,51 @@ There are three environments where this project runs:
 2. **Linux** — Install Stata and its required packages independently, then use the standard Python setup below.
 3. **Cloud environments** — May need additional configuration; see [Troubleshooting](#troubleshooting).
 
-## Standard Setup
+## Canonical Exact-Reproduction Setup
 
-Create an isolated Python environment and install the pinned dependencies:
+The canonical environment is recorded in `environment.lock.json`. It pins
+Python 3.13.3, the tested macOS/Apple Silicon environment, StataNow/SE 18.5,
+and every required Stata add-on. Python artifacts are additionally locked by
+cryptographic hashes in `requirements.lock`.
 
 ```bash
-python3 -m venv .venv
+python3.13 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install pip==25.0.1
+python -m pip install --require-hashes -r requirements.lock
+python tools/verify_environment.py
 ```
 
-Install and license Stata SE independently, then install the required Stata
-packages: `estout`, `ftools`, `reghdfe`, `require`, `outreg2`, `coefplot`, and
-`ppmlhdfe`.
+Stata is licensed software and is not distributed with this repository.
+Install and license the exact Stata build recorded in `environment.lock.json`.
+The required add-on versions are listed in
+`environment/stata-requirements.txt`; their installed entry points are
+checksummed by the verifier. `Analysis/shared/stata_setup.py` also enforces
+the exact versions whenever a Stata-backed analysis starts.
+
+The human-readable `requirements.txt` contains exact Python version pins.
+`requirements.lock` is the installation source for a formal reproduction
+because it additionally authenticates every permitted package artifact.
+
+For Python-only development on another system, install the same hash lock and
+skip the OS/Stata portion of the check:
+
+```bash
+python tools/verify_environment.py --python-only
+```
+
+Regenerate `requirements.lock` only when intentionally updating dependencies:
+
+```bash
+uv pip compile requirements.txt \
+  --python-version 3.13.3 \
+  --python-platform aarch64-apple-darwin \
+  --generate-hashes --no-annotate \
+  --output-file requirements.lock
+```
+
+After regenerating it, update the corresponding SHA-256 value in
+`environment.lock.json` and rerun the clean-room reproduction.
 
 Data are not downloaded during setup. Before running the analysis, public
 users must obtain the required inputs independently from their original

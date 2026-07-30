@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "description": "Canonical environment that completed the exact clean-room reproduction.",
+  "system": {
+    "name": "macOS",
+    "version": "26.5.2",
+    "build": "25F84",
+    "machine": "arm64"
+  },
+  "python": {
+    "implementation": "CPython",
+    "version": "3.13.3",
+    "pip_version": "25.0.1",
+    "requirements_file": "requirements.txt",
+    "requirements_sha256": "aa8892e23c6a55e40a3c17b873dfc7aa54809328ff564c02c22e1e820182c284",
+    "hash_lock_file": "requirements.lock",
+    "hash_lock_sha256": "89c5078538f9cdd89fdf88f86f735f699df79043322a6b4787f0b4d6205d5f6d"
+  },
+  "stata": {
+    "product": "StataNow/SE",
+    "version": "18.5",
+    "revision": "26 Feb 2025",
+    "platform": "Unix (Apple Silicon)",
+    "binary": {
+      "path": "/Applications/Stata/StataSE.app/Contents/MacOS/stata-se",
+      "sha256": "dc08b439ba9e8d1c4cb0934311176a7addbd23446f59c0158f54e1c09f25fe56"
+    },
+    "library": {
+      "path": "/Applications/Stata/StataSE.app/Contents/MacOS/libstata-se.dylib",
+      "sha256": "ce22afcd43b95054d59cfc36221bf638e420f129cba888bb3f43bfef599a9a1b"
+    },
+    "ado_root": "~/Library/Application Support/Stata/ado/plus",
+    "requirements_file": "environment/stata-requirements.txt",
+    "packages": [
+      {
+        "name": "estout",
+        "version": "3.31",
+        "file": "e/estout.ado",
+        "sha256": "59e8e006c8ff1679ea185d22081bd0a107e02c341132fdea557798d36f5a36f9"
+      },
+      {
+        "name": "require",
+        "version": "1.3.1",
+        "file": "r/require.ado",
+        "sha256": "0f5a7bad374ade6c6ba0f05973666bb06b63d4acc36ddb0e277a060249a0e6de"
+      },
+      {
+        "name": "reghdfe",
+        "version": "6.13.1",
+        "file": "r/reghdfe.ado",
+        "sha256": "0c700ea38de4ed110d0cbb57acd3e24351a5ab68b61dd84fcb0e5bc8f02d941a"
+      },
+      {
+        "name": "ftools",
+        "version": "2.50.0",
+        "file": "f/ftools.ado",
+        "sha256": "c7eba3272b5fcd1dfa157e65c37840a051c6e2bf327d5ee31d42df65cf330b00"
+      },
+      {
+        "name": "outreg2",
+        "version": "2.3.2",
+        "file": "o/outreg2.ado",
+        "sha256": "d366daa9d0621fe1011204879f696c75939202776802991ae96d170ae9d44e3f"
+      },
+      {
+        "name": "coefplot",
+        "version": "1.8.8",
+        "file": "c/coefplot.ado",
+        "sha256": "7c555af8d3a3efa1d72861988259ca4d2b67d52516bb87d82f21f31b639517f3"
+      },
+      {
+        "name": "ppmlhdfe",
+        "version": "2.3.3",
+        "file": "p/ppmlhdfe.ado",
+        "sha256": "92888a6e4e67213c71e09a50f9ec043c0320828105b553757d6cee01ca5a0b82"
+      }
+    ]
+  }
+}

@@ -3,7 +3,13 @@ Initialize Stata via pystata and optionally install Stata packages.
 """
 import os
 import platform
+from pathlib import Path
 import time
+
+
+STATA_REQUIREMENTS = (
+    Path(__file__).resolve().parents[2] / "environment" / "stata-requirements.txt"
+)
 
 
 def init_stata(install_packages=False):
@@ -42,13 +48,15 @@ def init_stata(install_packages=False):
     stata_setup.config(STATA_DIR, STATA_EDITION, splash=False)
     from pystata import stata
 
-    if install_packages:
-        packages = ['estout', 'require', 'reghdfe', 'ftools', 'outreg2', 'coefplot', 'ppmlhdfe']
-        for package in packages:
-            try:
-                _run_stata_command(stata, f'ssc install {package}, replace')
-            except Exception as e:
-                print(f'Note: {package} install returned: {e}')
+    if not STATA_REQUIREMENTS.is_file():
+        raise FileNotFoundError(
+            f"Locked Stata requirements not found: {STATA_REQUIREMENTS}"
+        )
+    install_option = ", install" if install_packages else ""
+    _run_stata_command(
+        stata,
+        f'require using "{STATA_REQUIREMENTS.as_posix()}"{install_option}',
+    )
 
     return stata
 

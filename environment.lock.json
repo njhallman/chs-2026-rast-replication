@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "description": "Canonical environment that completed the exact clean-room reproduction.",
+  "description": "Canonical environment that completed the exact clean-room replication.",
   "system": {
     "name": "macOS",
     "version": "26.5.2",

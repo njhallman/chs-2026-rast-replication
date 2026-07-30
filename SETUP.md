@@ -8,7 +8,7 @@ There are three environments where this project runs:
 2. **Linux** — Install Stata and its required packages independently, then use the standard Python setup below.
 3. **Cloud environments** — May need additional configuration; see [Troubleshooting](#troubleshooting).
 
-## Canonical Exact-Reproduction Setup
+## Canonical Exact-Replication Setup
 
 The canonical environment is recorded in `environment.lock.json`. It pins
 Python 3.13.3, the tested macOS/Apple Silicon environment, StataNow/SE 18.5,
@@ -31,7 +31,7 @@ checksummed by the verifier. `Analysis/shared/stata_setup.py` also enforces
 the exact versions whenever a Stata-backed analysis starts.
 
 The human-readable `requirements.txt` contains exact Python version pins.
-`requirements.lock` is the installation source for a formal reproduction
+`requirements.lock` is the installation source for a formal replication
 because it additionally authenticates every permitted package artifact.
 
 For Python-only development on another system, install the same hash lock and
@@ -64,7 +64,7 @@ uv pip compile requirements.txt \
 ```
 
 After regenerating it, update the corresponding SHA-256 value in
-`environment.lock.json` and rerun the clean-room reproduction.
+`environment.lock.json` and rerun the clean-room replication.
 
 Data are not downloaded during setup. Before running the analysis, public
 users must obtain the required inputs independently from their original
@@ -72,7 +72,7 @@ providers and place them under `Analysis/Data/`.
 
 Choose the workflow before continuing:
 
-- For an **exact reproduction**, install the same historical-vintage inputs
+- For an **exact replication**, install the same historical-vintage inputs
   used for the paper. Those licensed inputs are not distributed here.
 - For an **approximate updated-vintage refresh**, users with their own licenses
   may run the acquisition scripts described in `Analysis/pipeline/README.md`.

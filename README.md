@@ -1,7 +1,7 @@
 This repository contains the code used to create the paper at
 https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4678211.
 
-The repository publishes reproduction code only. It does not distribute the
+The repository publishes replication code only. It does not distribute the
 underlying data, including Revelio and other commercial or licensed inputs.
 Public users must obtain all required inputs independently from the original
 providers under their own licenses and permissions; see
@@ -32,14 +32,14 @@ See `SETUP.md` for development and noncanonical-platform instructions.
 
 There are two distinct workflows:
 
-1. **Formal exact reproduction.** The published results were generated from a
+1. **Formal exact replication.** The published results were generated from a
    fixed historical data vintage that cannot be redistributed. Researchers who
    independently possess the matching licensed inputs may install them under
    `Analysis/Data/` and run the commands below.
 2. **Optional data refresh.** The numbered acquisition scripts under
    `Analysis/pipeline/` can help users with their own WRDS and source-provider
    permissions build an approximate, updated-vintage dataset. Provider
-   coverage and schemas change, so refreshed data will not reproduce the
+   coverage and schemas change, so refreshed data will not replicate the
    published tables and figures exactly.
 
 ```bash
@@ -54,11 +54,11 @@ python Analysis/run_all.py
 See `Analysis/pipeline/README.md` for the full pipeline documentation.
 See `DATA_ACCESS.md` before using any acquisition script.
 The machine-readable mapping from each published output to its generator is
-in `reproduction_manifest.json`.
+in `replication_manifest.json`.
 
 ## Optional Python-only path
 
-Users without Stata can reproduce all 12 tables and eight figures with the
+Users without Stata can replicate all 12 tables and eight figures with the
 independently validated Python compatibility path:
 
 ```bash

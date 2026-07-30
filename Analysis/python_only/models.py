@@ -234,7 +234,7 @@ def add_period_dummies(data: pd.DataFrame) -> pd.DataFrame:
 def summary_statistics(
     data: pd.DataFrame, variables: list[str], gender: str = "female"
 ) -> pd.DataFrame:
-    """Reproduce estpost summarize plus unequal-variance t tests."""
+    """Replicate estpost summarize plus unequal-variance t tests."""
     records: list[dict[str, float | str | int]] = []
     groups = [
         ("total", data),

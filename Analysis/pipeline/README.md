@@ -4,9 +4,9 @@ Numbered scripts that acquire, process, and prepare data for the paper.
 
 ## Two different uses
 
-### Formal exact reproduction
+### Formal exact replication
 
-Exact reproduction requires the historical input vintage used for the paper.
+Exact replication requires the historical input vintage used for the paper.
 The licensed snapshot is not distributed. Researchers who independently
 possess the matching files can place them in the layout below and begin with
 scripts 06 and 07.
@@ -18,7 +18,7 @@ point for licensed users who want to assemble a newer data vintage. Users must
 obtain WRDS, Revelio Labs, BoardEx, Audit Analytics, and every other licensed
 input independently under their own permissions. Current provider data,
 coverage, and schemas may differ from the paper vintage, so this route produces
-an approximate updated-vintage analysis and will not reproduce the published
+an approximate updated-vintage analysis and will not replicate the published
 tables and figures exactly.
 
 ## Script Sequence

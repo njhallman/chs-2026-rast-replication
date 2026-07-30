@@ -92,7 +92,7 @@ def main():
     parser.add_argument(
         '--python-only',
         action='store_true',
-        help='Reproduce every output without importing or starting Stata',
+        help='Replicate every output without importing or starting Stata',
     )
     parser.add_argument(
         '--output-dir',

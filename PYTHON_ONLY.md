@@ -1,11 +1,11 @@
-# Python-only reproduction
+# Python-only replication
 
 The repository includes an optional Python-only execution path for users who
 do not have Stata. It reuses every generator that was already Python-native
 and translates only the Stata-backed regressions, tests, tables, and benchmark
 figures.
 
-The formal exact-reproduction environment remains the authoritative workflow.
+The formal exact-replication environment remains the authoritative workflow.
 The Python path is an independently validated compatibility implementation.
 It does not import, start, or require Stata.
 
@@ -77,7 +77,7 @@ multiple-record risk interval convention, `entry < failure_time <= exit`.
 It also handles regressors absorbed by year effects, separated zero-failure
 year levels, and Lin-Wei employee-clustered covariance. This detail matters:
 the default repeated-record boundary behavior in common Python Cox libraries
-does not reproduce Stata's estimates for this sample.
+does not replicate Stata's estimates for this sample.
 
 ## Validation against the official vintage
 
@@ -90,7 +90,7 @@ historical data snapshot, then compared with the committed paper artifacts:
 - all reported adjusted R-squared values matched at three decimal places;
 - six of 12 tables were byte-identical, with the remaining differences due to
   LaTeX formatting rather than reported values;
-- all eight figures reproduced the same plotted results, with structural image
+- all eight figures replicated the same plotted results, with structural image
   similarity from 0.948 to 1.000.
 
 The remaining differences are cosmetic rendering and formatting differences

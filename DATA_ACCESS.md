@@ -20,9 +20,9 @@ replicator. This repository does not provide Stata installers or licenses.
 Public-source inputs, including Census/OMB and IPEDS files, can be downloaded
 by the numbered scripts described in `Analysis/pipeline/README.md`.
 
-## Exact reproduction versus an updated-vintage refresh
+## Exact replication versus an updated-vintage refresh
 
-The formal exact reproduction path requires the historical input vintage used
+The formal exact replication path requires the historical input vintage used
 for the paper. Because that snapshot includes licensed data, it is not
 distributed through this repository.
 
@@ -36,7 +36,7 @@ under their own permissions.
 Running the acquisition scripts today creates a new data vintage. Provider
 schemas, coverage, corrections, and availability change over time, so the
 result is suitable for an approximate updated-vintage analysis, not an exact
-reproduction of the published output.
+replication of the published output.
 
 The refresh workflow is not fully automatic. It also relies on project-specific
 firm and geography mappings and, for proxy-statement measures, a separately

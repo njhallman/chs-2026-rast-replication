@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the canonical software environment for the exact reproduction."""
+"""Verify the canonical software environment for the exact replication."""
 
 from __future__ import annotations
 

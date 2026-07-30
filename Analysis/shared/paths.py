@@ -13,7 +13,7 @@ def _find_repo_dir():
         current = os.path.dirname(current)
     raise RuntimeError(
         "Could not find repo root (looked for LaTeX/Tables/ directory). "
-        "Are you running from inside the reproduction repository?"
+        "Are you running from inside the replication repository?"
     )
 
 

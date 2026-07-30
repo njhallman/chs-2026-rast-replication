@@ -14,19 +14,23 @@
     },
     {
       "file": "benchmarkBB5IB.png",
-      "generator": "Analysis/benchmarks/fig_top5_ib_extended.py"
+      "generator": "Analysis/benchmarks/fig_top5_ib_extended.py",
+      "python_only_generator": "Analysis/python_only/benchmark_figures.py"
     },
     {
       "file": "benchmarkOFS.png",
-      "generator": "Analysis/benchmarks/fig_top5_ib_extended.py"
+      "generator": "Analysis/benchmarks/fig_top5_ib_extended.py",
+      "python_only_generator": "Analysis/python_only/benchmark_figures.py"
     },
     {
       "file": "benchmarkATCombined.png",
-      "generator": "Analysis/benchmarks/fig_at_combined.py"
+      "generator": "Analysis/benchmarks/fig_at_combined.py",
+      "python_only_generator": "Analysis/python_only/benchmark_figures.py"
     },
     {
       "file": "benchmarkB4Tax.png",
-      "generator": "Analysis/benchmarks/fig_b4_nonaudit.py"
+      "generator": "Analysis/benchmarks/fig_b4_nonaudit.py",
+      "python_only_generator": "Analysis/python_only/benchmark_figures.py"
     },
     {
       "file": "supplyVsEntry.png",
@@ -40,27 +44,33 @@
     },
     {
       "file": "summaryStats.tex",
-      "generator": "Analysis/tables/summary_stats.py"
+      "generator": "Analysis/tables/summary_stats.py",
+      "python_only_generator": "Analysis/python_only/run_tables.py"
     },
     {
       "file": "mainB4Table.tex",
-      "generator": "Analysis/tables/extended_period_tables.py"
+      "generator": "Analysis/tables/extended_period_tables.py",
+      "python_only_generator": "Analysis/python_only/run_tables.py"
     },
     {
       "file": "mechanismsTable.tex",
-      "generator": "Analysis/tables/mechanisms_table.py"
+      "generator": "Analysis/tables/mechanisms_table.py",
+      "python_only_generator": "Analysis/python_only/run_tables.py"
     },
     {
       "file": "destinationQualityPost.tex",
-      "generator": "Analysis/tables/outside_options.py"
+      "generator": "Analysis/tables/outside_options.py",
+      "python_only_generator": "Analysis/python_only/run_tables.py"
     },
     {
       "file": "rankInteraction.tex",
-      "generator": "Analysis/tables/rank_interaction.py"
+      "generator": "Analysis/tables/rank_interaction.py",
+      "python_only_generator": "Analysis/python_only/run_tables.py"
     },
     {
       "file": "robustnessModels.tex",
-      "generator": "Analysis/tables/robustness_models.py"
+      "generator": "Analysis/tables/robustness_models.py",
+      "python_only_generator": "Analysis/python_only/run_tables.py"
     },
     {
       "file": "rolesTable.tex",

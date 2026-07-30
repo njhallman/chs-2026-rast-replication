@@ -9,14 +9,24 @@ providers under their own licenses and permissions; see
 
 ## Setup
 
-- Python 3.13+ with dependencies in `requirements.txt`
-- Stata SE (macOS: `/Applications/Stata/`, Linux: see `SETUP.md`)
+- Canonical Python 3.13.3, recorded in `.python-version`
+- Hash-locked Python artifacts in `requirements.lock`
+- StataNow/SE 18.5 with exact add-on versions in
+  `environment/stata-requirements.txt`
 - Independently obtained data placed under `Analysis/Data/`
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
+python3.13 -m venv .venv
+source .venv/bin/activate
+python -m pip install pip==25.0.1
+python -m pip install --require-hashes -r requirements.lock
+python tools/verify_environment.py
 
 ```
+
+The strict verifier checks the exact successful clean-room environment,
+including OS build, architecture, Stata binaries, and Stata add-on checksums.
+See `SETUP.md` for development and noncanonical-platform instructions.
 
 ## Running the Analysis
 

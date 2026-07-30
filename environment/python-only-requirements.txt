@@ -1,0 +1,2 @@
+# Additional dependency for the optional Python-only analytical path.
+pyfixest==0.60.0

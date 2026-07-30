@@ -11,7 +11,7 @@ from shared.data_loader import load_other_exp
 
 print("Creating topCompanies.tex")
 
-revOtherFsExp = load_other_exp()
+revOtherFsExp = load_other_exp(columns=['company_raw'])
 
 company_mapping = {
     'Morgan Stanley': 'Morgan Stanley',

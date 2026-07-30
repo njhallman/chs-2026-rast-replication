@@ -55,3 +55,18 @@ See `Analysis/pipeline/README.md` for the full pipeline documentation.
 See `DATA_ACCESS.md` before using any acquisition script.
 The machine-readable mapping from each published output to its generator is
 in `reproduction_manifest.json`.
+
+## Optional Python-only path
+
+Users without Stata can reproduce all 12 tables and eight figures with the
+independently validated Python compatibility path:
+
+```bash
+python -m pip install -r environment/python-only-requirements.txt
+python Analysis/run_all.py --python-only
+```
+
+Outputs are written below `PythonOutput/` and do not overwrite the committed
+Stata reference artifacts. See [`PYTHON_ONLY.md`](PYTHON_ONLY.md) for setup,
+rerun instructions, statistical implementation details, and validation
+results.

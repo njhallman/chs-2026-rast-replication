@@ -41,6 +41,18 @@ skip the OS/Stata portion of the check:
 python tools/verify_environment.py --python-only
 ```
 
+To generate every reported artifact without Stata, install the optional
+estimator dependency after running the strict verifier and use the integrated
+Python path:
+
+```bash
+python -m pip install -r environment/python-only-requirements.txt
+python Analysis/run_all.py --python-only
+```
+
+See [`PYTHON_ONLY.md`](PYTHON_ONLY.md) for compatibility details and validation
+against the official data vintage.
+
 Regenerate `requirements.lock` only when intentionally updating dependencies:
 
 ```bash

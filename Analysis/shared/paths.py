@@ -19,8 +19,14 @@ def _find_repo_dir():
 
 REPO_DIR = _find_repo_dir()
 data_dir = os.path.join(REPO_DIR, 'Analysis', 'Data')
-tables_dir = os.path.join(REPO_DIR, 'LaTeX', 'Tables')
-figures_dir = os.path.join(REPO_DIR, 'LaTeX', 'Figures')
+output_dir = os.environ.get('CHS_OUTPUT_DIR')
+if output_dir:
+    output_dir = os.path.abspath(output_dir)
+    tables_dir = os.path.join(output_dir, 'Tables')
+    figures_dir = os.path.join(output_dir, 'Figures')
+else:
+    tables_dir = os.path.join(REPO_DIR, 'LaTeX', 'Tables')
+    figures_dir = os.path.join(REPO_DIR, 'LaTeX', 'Figures')
 
 if __name__ == '__main__':
     print(f'REPO_DIR:    {REPO_DIR}')

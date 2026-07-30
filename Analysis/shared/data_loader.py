@@ -13,9 +13,12 @@ def load_b4_stata():
     return pd.read_feather(ensure_data_file("processed/revB4AudStata.feather"))
 
 
-def load_other_exp():
+def load_other_exp(columns=None):
     """Load other financial services employee-year panel (exploration/figures)."""
-    return pd.read_feather(ensure_data_file("processed/revOtherFsExp.feather"))
+    return pd.read_feather(
+        ensure_data_file("processed/revOtherFsExp.feather"),
+        columns=columns,
+    )
 
 
 def load_other_stata():
